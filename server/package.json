@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "start": "node index.js",
+    "deploy": "serverless deploy"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.2.0"
+  },
+  "devDependencies": {
+    "aws-serverless": "^1.0.2",
+    "serverless": "^2.60.0"
+  }
+}

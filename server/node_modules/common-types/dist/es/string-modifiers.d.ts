@@ -1,0 +1,4 @@
+export declare type Capitalize<T> = intrinsic;
+export declare type Uncapitalize<T> = intrinsic;
+export declare type Uppercase<T> = intrinsic;
+export declare type Lowercase<T> = intrinsic;

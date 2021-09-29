@@ -1,0 +1,69 @@
+import { IAwsLambdaProxyIntegrationRequestV2, IAwsLambdaProxyIntegrationRequest } from "./aws";
+import { AwsArn, AwsArnPartition, AwsArnResource, AwsArnService, AwsAccountId, AwsArnLambda, AwsArnEventBridge, AwsArnStepFunction } from "./aws-arn";
+import { AwsRegion } from "./aws-regions";
+import { AwsStage } from "./aws-stage";
+/**
+ * Distinguishes between a V1 and V2 Proxy Integration Request
+ */
+export declare function isProxyRequestContextV2(ctx: IAwsLambdaProxyIntegrationRequest): ctx is IAwsLambdaProxyIntegrationRequestV2;
+/**
+ * Provides a strong type guard for ARN's of Lambda _functions_ specifically.
+ *
+ * Note: this type-guard is often the best choice but because `AwsArn` can't
+ * provide typing down to the _resource_ level, the resulting type will not
+ * fit into broader `AwsArn` type. Use the more general `isLambdaArn()` if you
+ * want this.
+ */
+export declare function isLambdaFunctionArn(arn: string): arn is AwsArnLambda<"function">;
+/**
+ * A type-guard to detect a Lambda based ARN and return a constrained version of
+ * the `AwsArn` type.
+ *
+ * Note: if you want to constrain all the way down to a Lambda function you can
+ * use the `isLambdaFunctionArn()` type guard but while it is more constrained,
+ * it is no longer a subset of `AwsArn`.
+ */
+export declare function isLambdaArn(arn: string): arn is AwsArn<string, AwsArnPartition, "lambda">;
+/**
+ * Type guard to ensure that a given value is a `AwsRegion`
+ */
+export declare function isAwsRegion(region: unknown): region is AwsRegion;
+/**
+ * Type guard to ensure that a given value is a valid `AwsStage`
+ */
+export declare function isAwsStage(stage: unknown): stage is AwsStage;
+/**
+ * Type guard to ensure a ARN string is EventBridge event
+ */
+export declare function isEventBridgeArn(arn: string): arn is AwsArnEventBridge;
+/**
+ * Type guard to ensure that an ARN string is a Step Function definition.
+ *
+ * Note: this narrows to both the Service and Resource level and therefore
+ * is more detailed than the `AwsArn` type. For a slightly less strongly
+ * typed guard you can opt for `isStatesArn()` and while not as strong
+ * it will _roll up_ to `AwsArn`.
+ */
+export declare function isStepFunctionArn<T extends string = string>(arn: string): arn is AwsArnStepFunction<T>;
+/**
+ * A reasonable strong type guard to validate that a string is in fact
+ * a fully qualified ARN.
+ */
+export declare function isArn(arn: string): arn is AwsArn;
+/**
+ * A type guard that tests whether a string is a valid AWS _partition_ (from the standpoint of a ARN)
+ */
+export declare function isArnPartition(partition: unknown): partition is AwsArnPartition;
+/**
+ * A type guard that tests whether a string is a valid AWS _resource_ (from the standpoint of a ARN)
+ */
+export declare function isArnResource(resource: string): resource is AwsArnResource;
+/**
+ * A type guard that tests whether a string is a valid AWS _service_ (from the standpoint of a ARN)
+ */
+export declare function isArnService(service: string): service is AwsArnService;
+/**
+ * validates that the provided input could be a valid
+ * `AwsAccountId`
+ */
+export declare function isAwsAccountId(accountId: unknown): accountId is AwsAccountId;

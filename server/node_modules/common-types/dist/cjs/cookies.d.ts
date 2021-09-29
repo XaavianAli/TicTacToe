@@ -1,0 +1,30 @@
+import { UtcDateString } from "./aliases";
+/**
+ * the most basic cookie assignment for `Set-Cookie` header
+ * is just a `name=value` pairing
+ */
+export declare type SimpleCookie = `${string}=${string}`;
+/**
+ * Most cookies start with the `SimpleCookie` and then
+ * add some attributes.
+ */
+export declare type AttributedCookie = `${SimpleCookie};${string}`;
+/**
+ * This provides basic typing support for the `Set-Cookie` header
+ * variable. If you want stronger support you can use `StrictCookie`.
+ */
+export declare type Cookie = SimpleCookie | AttributedCookie;
+export declare type CookieSameSite = "Strict" | "Lax" | "None; Secure";
+export declare type CookieExpires = `Expires=${UtcDateString}`;
+export declare type CookieMaxAge = `Max-Age=${number}`;
+export declare type CookieHttpOnly = "HttpOnly";
+export declare type CookieDomain = `Domain=${string}`;
+export declare type CookieSecure = "Secure";
+export declare type CookieAttribute = `SameSite=${CookieSameSite}` | CookieExpires | CookieMaxAge | CookieHttpOnly | CookieDomain | CookieSecure;
+export declare type CookieAttributes = CookieAttribute | `${CookieAttribute}; ${CookieAttribute}` | `${CookieAttribute}; ${CookieAttribute}; ${string}`;
+/**
+ * Provides typing for the `Set-Cookie` header variable. If for some
+ * reason this ends up being too strict you can try the `Cookie` type
+ * for a more relaxed typing.
+ */
+export declare type StrictCookie = SimpleCookie | `${SimpleCookie}; ${CookieAttributes}`;

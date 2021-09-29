@@ -1,0 +1,2 @@
+export declare type BearerToken = `Bearer ${string}`;
+export declare function isBearerToken(token: unknown): token is BearerToken;
