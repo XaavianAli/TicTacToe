@@ -1,6 +1,6 @@
 # Tic Tac Toe
 
-This project was created for the Prevu3d technical test. It is available to play at http://ec2-18-218-71-138.us-east-2.compute.amazonaws.com:3000
+This project was created for the Prevu3d technical test by Xaavian Ali. It is available to play at http://ec2-18-218-71-138.us-east-2.compute.amazonaws.com:3000
 
 ## Information
 
